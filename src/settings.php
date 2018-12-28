@@ -18,7 +18,7 @@ return [
 
         // weixin
         'weixin' => [
-            'app_id'    => 'wx6bd44c22f867f362',
+            'app_id'    => 'wx6bd44c22f867f362',    //测试号
             'secret'    => '90443526e6dd9ef3eef9c5bbdfa418cc',
             'token'     => 'hillock',
             'log' => [
