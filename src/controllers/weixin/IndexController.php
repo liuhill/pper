@@ -26,7 +26,6 @@ class IndexController
 
     public function index($req,$res,$args){
         // 使用配置来初始化一个公众号应用实例。
-        // 使用配置来初始化一个公众号应用实例。
         $app = Factory::officialAccount($this->cfg);
 
         $app->server->push(function ($message) {
@@ -35,7 +34,7 @@ class IndexController
                     return '收到事件消息';
                     break;
                 case 'text':
-                    return '收到文字消息';
+                    return '收到文字消息:' . $message['content'];
                     break;
                 case 'image':
                     $user = $message['FromUserName'];

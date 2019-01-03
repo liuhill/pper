@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>拍拍客</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link  type="text/css"  rel="stylesheet" href="/css/wall.css" />
+    <link  type="text/css"  rel="stylesheet" href="/css/lightbox.min.css" />
+</head>
+<body>
+<div id="info">
+    <a href="/users/<?= $uid ?>" target="_blank" rel="noopener" id="uid"><?= $uid ?></a> - 拍拍客.
+</div>
+<div id="container"></div>
+<div id="menu">
+    <button id="table">TABLE</button>
+    <button id="sphere">SPHERE</button>
+    <button id="helix">HELIX</button>
+    <button id="grid">GRID</button>
+</div>
+
+
+<script src="/js/three.js"></script>
+<script src="/js/tween.min.js"></script>
+<script src="/js/TrackballControls.js"></script>
+<script src="/js/CSS3DRenderer.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/lightbox.min.js"></script>
+<script src="/js/wall.js"></script>
+<script >
+    $(function(){
+        var uid = $("#uid").text();
+        getImgs(uid);
+    })
+</script>
+</body>
+</html>
