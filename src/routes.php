@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 $app->get('/home','\Controllers\Admin\HomeController:home');
 $app->get('/users/[{id}]','\Controllers\Users\PhotosController:index');
-$app->get('/wall/{id}','\Controllers\Users\PhotosController:wall');
+$app->get('/wall/[{id}]','\Controllers\Users\PhotosController:wall');
 $app->get('/','\Controllers\Users\PhotosController:wall');
 $app->get('/weixin','\Controllers\weixin\IndexController:vaild');
 $app->get('/ttt','\Controllers\weixin\IndexController:ttt');
