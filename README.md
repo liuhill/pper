@@ -14,7 +14,7 @@ composer install
 
 - 3 生成自动加载
 ```
-composer dump-autoload -a
+composer dump-autoload -o
 ```
 
 
