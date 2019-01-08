@@ -30,6 +30,7 @@ cp src/setting.default.php src/setting.php
 ```
 
 - 6 修改微信配置和数据库配置，文件 `src/setting.php`
+
 微信
 ```
         // weixin
