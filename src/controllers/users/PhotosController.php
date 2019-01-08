@@ -43,7 +43,7 @@ class PhotosController
 //        $images = $this->getImagesByUid($uid);
 
 
-        if(!empty($args['id'])){
+        if(isset($args['id']) && !empty($args['id'])){
             $uid = intval($args['id']);
         }
 
@@ -79,9 +79,14 @@ class PhotosController
     }
 
     public function wall($request, $response, $args){
-        $openId = $args['id'];
-        $mUser = new User($this->db);
-        $uid = $mUser->getUid($openId);
+        if(isset($args['id']) && !empty($args['id'])){
+            $openId = $args['id'];
+            $mUser = new User($this->db);
+            $uid = $mUser->getUid($openId);
+        }
+        else {
+            $uid = '';
+        }
 
         $response = $this->view->render($response,
             'wall.phtml',
