@@ -8,9 +8,11 @@ use Slim\Http\Response;
 $app->get('/home','\Controllers\Admin\HomeController:home');
 $app->get('/users/[{id}]','\Controllers\Users\PhotosController:index');
 $app->get('/wall/{id}','\Controllers\Users\PhotosController:wall');
+$app->get('/','\Controllers\Users\PhotosController:wall');
 $app->get('/weixin','\Controllers\weixin\IndexController:vaild');
 $app->get('/ttt','\Controllers\weixin\IndexController:ttt');
 $app->post('/weixin','\Controllers\weixin\IndexController:index');
+/*
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
@@ -18,4 +20,5 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
 });
+*/
 
