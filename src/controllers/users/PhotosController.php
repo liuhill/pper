@@ -10,18 +10,20 @@ namespace Controllers\Users;
 
 use Psr\Container\ContainerInterface;
 use \Common\Image\Photo;
-
+use \Models\User;
+use \Models\Message;
 
 class PhotosController
 {
     protected $container;
-    protected $photoDir = null;
+    protected $resource = null;
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
         $this->view = $container->get('view');
-        $this->photoDir = $container->get("settings")['photo'];
+        $this->resource = $container->get("settings")['resource'];
+        $this->db = $container->get("db");
     }
 
     private function getImagesByUid($uid){
@@ -38,13 +40,49 @@ class PhotosController
     }
 
     public function index($request, $response, $args){
-        $uid = $args['id'];
-        $images = $this->getImagesByUid($uid);
-        return $response->withJson($images);
+//        $images = $this->getImagesByUid($uid);
+
+
+        if(!empty($args['id'])){
+            $uid = intval($args['id']);
+        }
+
+        if (empty($uid)) {
+            $mMessage = new Message($this->db);
+            $resouce = $mMessage->getMessage();
+        } else {
+            $mMessage = new Message($this->db);
+            $resouce = $mMessage->getMessage($uid);
+        }
+        $data = [];
+        foreach($resouce as $i=>$v){
+            $info = [];
+            $info['type'] = $type = $v['type'];
+            switch($type){
+                case 'text':
+                    $info['text'] = $v['content'];
+                    break;
+                case 'image':
+                case 'voice':
+                case 'video':
+                case 'file':
+                    $info['src'] = $v['content'];
+                    $info['resource'] = $v['resource'];
+                    break;
+                default:
+                    continue;
+            }
+            $data[] = $info;
+        }
+
+        return $response->withJson($data);
     }
 
     public function wall($request, $response, $args){
-        $uid = $args['id'];
+        $openId = $args['id'];
+        $mUser = new User($this->db);
+        $uid = $mUser->getUid($openId);
+
         $response = $this->view->render($response,
             'wall.phtml',
             [

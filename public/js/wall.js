@@ -28,12 +28,12 @@ function init() {
         element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
 
         var a = document.createElement('a');
-        a.href =  val.original;
+        a.href =  val.resource;
         a.setAttribute('data-lightbox','roadtrip');
         a.setAttribute('title',a.href.substr(a.href.lastIndexOf('/')+1));
 
         var image=new Image();
-        image.src=val.url;
+        image.src=val.src;
         a.appendChild(image)
 
         element.appendChild( a );
@@ -266,7 +266,7 @@ function getImgs (uid){
     //var table = [];
     var row = 1;
     var col = 1;
-    var maxCol = 3;
+    var maxCol = 18;
 
 
     $.ajax({

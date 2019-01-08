@@ -13,15 +13,22 @@ use EasyWeChat\Factory;
 use EasyWeChat\Kernel\Messages\News;
 use EasyWeChat\Kernel\Messages\NewsItem;
 use \Common\Image\Photo;
+use \Models\User;
+use \Models\Message;
 
 class IndexController
 {
     protected $container;
+    protected $db;
+    protected $resource;
     private $cfg = null;
+
 
     public function __construct(ContainerInterface $container){
         $this->container = $container;
         $this->cfg = $container->get("settings")['weixin'];
+        $this->db = $container->get("db");
+        $this->resource = $container->get("settings")['resource'];
     }
 
     public function index($req,$res,$args){
@@ -29,19 +36,39 @@ class IndexController
         $app = Factory::officialAccount($this->cfg);
 
         $app->server->push(function ($message) {
-            switch ($message['MsgType']) {
+            $user = $message['FromUserName'];
+            $mUser = new User($this->db);
+            $uid = $mUser->getUidByOpenid($user);
+            $userCenter = "http://" . $_SERVER['HTTP_HOST'] . "/wall" .DIRECTORY_SEPARATOR .$uid;
+
+            $mMsg = new Message($this->db);
+
+
+            switch ( $type = $message['MsgType']) {
                 case 'event':
                     return '收到事件消息';
                     break;
                 case 'text':
-                    return '收到文字消息:' . $message['content'];
+                    if ($message['Content'] == "mine" || $message['Content'] == "我的"){
+
+                        return $this->response($userCenter, "" ,"点击进入您的照片墙", "您的拍拍客地址");
+                    }
+
+                    return '收到文字消息:' . $message['Content'];
                     break;
                 case 'image':
-                    $user = $message['FromUserName'];
                     $url = $message['PicUrl'];
-                    $newUrl = $this->image($url,$user);
-                    $userCenter = "http://".$_SERVER['HTTP_HOST'] . "/user/$user";
-                    return $this->response($userCenter,$newUrl);
+                    $imageName = $this->image($url, $uid);
+                    if($imageName  === false){
+                        return $this->response($url, $url ,$user, "图片操作失败");
+                    }
+
+                    $orgImage = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName";
+                    $resize = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/resize/$imageName";
+                    $mMsg->saveMessage($uid,$type,$resize,$orgImage);
+
+                    return $this->response($userCenter, $resize,'图片已经上墙，点击或者刷新可以查看最新的照片墙','上墙通知');
+
                     break;
                 case 'voice':
                     return '收到语音消息';
@@ -72,29 +99,37 @@ class IndexController
     }
 
     public function ttt($request, $response, $args){
+//*
+        $url = 'http://mmbiz.qpic.cn/mmbiz_jpg/EuJU30O3lFKuViaDuf1tJ1BLJ4xBgzYE2BsglxyIiaZYblhwFO6icK3iaqQI2wo3jvfKYmWXtz1S860jKicaBYf7mRg/0';
+        $openId = 'os_G_jqeNPMfWLA-A2KIKodfm3SY';
 
-        $url = 'http://mmbiz.qpic.cn/mmbiz_jpg/EuJU30O3lFLtYk4iaia1FMDrPc8JCzOuA1VbGbdX2ibypHkA92vJicuYKAyxKh21vsZrVxROdoRpnKGT5ic7n94ZDSw/0';
-        $user = 'os_G_jqeNPMfWLA-A2KIKodfm3S';
-        $userCenter = "http://".$_SERVER['HTTP_HOST'] . "/user/$user";
-        return $this->response($url,$userCenter);
+        $mUser = new User($this->db);
 
-        //$this->image($url,$name);
+        $uid = $mUser->getUid($openId);
+
+        $userCenter = "http://".$_SERVER['HTTP_HOST'] . "/users/$uid";
+//        return $this->response($url,$userCenter);
+
+        $this->image($url,$uid);
+
+        echo $userCenter;
+//*/
     }
 
-    private function image($url,$user){
-        $dir = $this->container->get("settings")['photo'];
-        $originalDir = $dir['original'].DIRECTORY_SEPARATOR.$user;
-        $resizeDir = $dir['resize'].DIRECTORY_SEPARATOR.$user;
-        $img = photo::download($url,$originalDir);
+    private function image($url,$uid){
+        $dir = $this->container->get("settings")['resource'];
+        $originalDir = $dir['path'] . DIRECTORY_SEPARATOR . $uid . DIRECTORY_SEPARATOR . "original";
+        $resizeDir = $dir['path'] . DIRECTORY_SEPARATOR . $uid . DIRECTORY_SEPARATOR . "resize";
+        $img = Photo::download($url,$originalDir);
         $imageName = basename($img);
         if(file_exists($img)){
             $resieFile = $resizeDir.DIRECTORY_SEPARATOR.$imageName;
-            if(photo::resize($img,$resizeDir.DIRECTORY_SEPARATOR.$imageName) !== true){
+            if(Photo::resize($img,$resizeDir.DIRECTORY_SEPARATOR.$imageName) !== true){
                 $this->container->logger->error("生成缩略失败:$resieFile");
                 return false;
             }
             else {
-                return $dir['resizeUrl']."/$user/$imageName";
+                return $imageName;
             }
         }
         else{
@@ -103,11 +138,8 @@ class IndexController
         }
     }
 
-    private function response($url,$image,$desc=null,$title='图片上墙')
+    private function response($url,$image,$desc,$title='拍拍客')
     {
-        if(is_null($desc)){
-            $desc = "图片已经上墙，点击查看" ;
-        }
         $items = [
             new NewsItem([
                 'title'       => $title,
@@ -119,4 +151,5 @@ class IndexController
         ];
         return $news = new News($items);
     }
+
 }

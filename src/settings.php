@@ -28,12 +28,17 @@ return [
         ],
 
         // 图片相关
-        'photo' => [
-            'original' => __DIR__ . "/../public/photo/original",
-            'resize' => __DIR__ . "/../public/photo/resize",
-            'resizeUrl' => "http://".$_SERVER['HTTP_HOST'] . "/photo/resize",
-            'originalUrl' => "http://".$_SERVER['HTTP_HOST'] . "/photo/original"
-        ]
+        'resource' => [
+            'path' => __DIR__ . "/../public/resource",
+            'url' => "http://".$_SERVER['HTTP_HOST'] . "/resource",
+        ],
 
+        // Database connection settings
+        "db" => [
+            "host" => "localhost",
+            "dbname" => "pper",
+            "user" => "",
+            "pass" => ""
+        ],
     ],
 ];

@@ -6,30 +6,63 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link  type="text/css"  rel="stylesheet" href="/css/wall.css" />
     <link  type="text/css"  rel="stylesheet" href="/css/lightbox.min.css" />
+    <!--微博-->
+    <meta property="og:type" content="webpage" />
+    <meta property="og:url" content="www.pper.com.cn" />
+    <meta property="og:title" content="拍拍客" />
+    <meta property="og:description" content="我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是——————拍拍客！" />
+
 </head>
 <body>
-<div id="info">
-    <a href="/users/<?= $uid ?>" target="_blank" rel="noopener" id="uid"><?= $uid ?></a> - 拍拍客.
+<div id="info" uid="<?= $uid ?>">
+    <a href="/users/<?= $uid ?>" target="_blank" rel="noopener">我的照片墙</a>
+    <div class="slogon">
+        我们喜欢随手拍一拍,大多数照片没有特殊意义，偶尔也会看一看。我们是<span>拍拍客！</span>
+    </div>
 </div>
 <div id="container"></div>
 <div id="menu">
-    <button id="table">TABLE</button>
-    <button id="sphere">SPHERE</button>
-    <button id="helix">HELIX</button>
-    <button id="grid">GRID</button>
+    <button id="table">照片墙</button>
+    <button id="sphere">水晶球</button>
+    <button id="helix">螺旋塔</button>
+    <button id="grid">展览厅</button>
 </div>
 
 
-<script src="/js/three.js"></script>
+<div id="weixin" >
+    <img src='/images/qrcode_for_gh_15b711976a8a_258.jpg' width = '130px',height = '130px'/>
+    <div>
+        <span>使用方法:</span>
+        <ul>
+            <li>1、微信添加公共账号</li>
+            <li>2、发送图片</li>
+            <li>3、刷新</li>
+        </ul>
+    </div>
+</div>
+<div id="code">
+    <a href="https://github.com/liuhill/Pper2" target="_blank">源代码</a>
+</div>
+<div id="demo" >
+    <div><img class="lazyload" data-src='/images/table.gif' /></div>
+    <div><img class="lazyload" data-src='/images/sphere.gif' /></div>
+    <div><img class="lazyload" data-src='/images/helix.gif' /></div>
+    <div><img class="lazyload" data-src='/images/grid.gif' /></div>
+</div>
+
+<script src="/js/three.min.js"></script>
 <script src="/js/tween.min.js"></script>
 <script src="/js/TrackballControls.js"></script>
 <script src="/js/CSS3DRenderer.js"></script>
 <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/lazyload.js"></script>
 <script src="/js/lightbox.min.js"></script>
 <script src="/js/wall.js"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 <script >
     $(function(){
-        var uid = $("#uid").text();
+        lazyload();
+        var uid = $("#info").attr("uid");
         getImgs(uid);
     })
 </script>

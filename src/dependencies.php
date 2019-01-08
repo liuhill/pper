@@ -19,3 +19,23 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
 };
+
+
+$c['errorHandler'] = function ($c) {
+    return function ($request, $response, $exception) use ($c) {
+        return $c['response']->withStatus(500)
+            ->withHeader('Content-Type', 'text/html')
+            ->write('Something went wrong!');
+    };
+};
+
+// PDO database library
+$container['db'] = function ($c) {
+    $settings = $c->get('settings')['db'];
+    $pdo = new PDO("mysql:host=" . $settings['host'] . ";dbname=" . $settings['dbname'],
+        $settings['user'], $settings['pass']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    return $pdo;
+};
+

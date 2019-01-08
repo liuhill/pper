@@ -24,8 +24,9 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Controllers\\":"src/controllers/",
-            "Common\\":"src/common/"
+            "Controllers\\": "src/controllers/",
+            "Common\\": "src/common/",
+            "Models\\": "src/models/"
         }
     },
     "config": {

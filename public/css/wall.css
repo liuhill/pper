@@ -19,26 +19,97 @@ a {
     color: #ffffff;
     padding: 5px;
     font-family: Monospace;
-    font-size: 13px;
+    font-size: 1em;
     font-weight: bold;
     text-align: center;
     z-index: 1;
 }
+
+#info span {
+    font-size: 1em;
+    color: red;
+}
+
+#info .slogon{
+    color: #9a9898;
+    font-size: .8em;
+}
+
+
+#weixin {
+    font-size: 1em;
+    color: white;
+    margin-bottom: 1em;
+}
+
+
+#weixin ul{
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+    font-size: .8em;
+}
+
+#weixin img {
+    width: 130px;
+    height: 130px;
+}
+
+#demo {
+    /*text-align: center;*/
+    color: white;
+    margin-bottom: 1em;
+}
+
+#demo img {
+    width: 110px;
+    height: 80px;
+    opacity: 0.6;
+    filter:alpha(opacity=60); /* 针对 IE8 以及更早的版本 */
+}
+
 
 #menu {
     position: absolute;
     bottom: 20px;
     width: 100%;
     text-align: center;
+    font-size: 1em;
+}
+
+#code {
+    z-index: 1;
+    position: absolute;
+    font-size: 0.5em;
+}
+#code a {
+    color: red;
 }
 
 .element {
     width: 120px;
     height: 160px;
     box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
-    border: 1px solid rgba(127,255,255,0.25);
     text-align: center;
+    border: 1px solid rgba(127,255,255,0.25);
     cursor: default;
+
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    display: -moz-box;
+    -moz-box-align: center;
+    -moz-box-pack: center;
+    display: -o-box;
+    -o-box-align: center;
+    -o-box-pack: center;
+    display: -ms-box;
+    -ms-box-align: center;
+    -ms-box-pack: center;
+    display: box;
+    box-align: center;
+    box-pack: center;
+
 }
 
 .element:hover {
@@ -74,9 +145,10 @@ a {
     color: rgba(127,255,255,0.75);
 }
 
+
 .element img {
-    opacity:0.4;
-    filter:alpha(opacity=40); /* 针对 IE8 以及更早的版本 */
+    opacity:0.7;
+    filter:alpha(opacity=70); /* 针对 IE8 以及更早的版本 */
 }
 
 .element img:hover {
@@ -99,3 +171,19 @@ button:active {
     color: #000000;
     background-color: rgba(0,255,255,0.75);
 }
+
+
+@media screen and (max-width: 800px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+    #weixin {
+        display: none;
+    }
+
+    #demo {
+        display: none;
+    }
+
+    #code {
+        display: none;
+    }
+}
+
