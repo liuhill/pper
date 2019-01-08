@@ -11,7 +11,7 @@ namespace Models;
 
 class Message
 {
-    const  COUNT = 20;
+    const  COUNT = 108;
     public $con;
 
     public function __construct($db)
