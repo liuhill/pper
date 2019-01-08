@@ -31,6 +31,13 @@ class IndexController
         $this->resource = $container->get("settings")['resource'];
     }
 
+    public function vaild($req,$res,$args){
+        $app = Factory::officialAccount($this->cfg);
+        $response = $app->server->serve();
+        // 将响应输出
+        return $response->send();
+    }
+
     public function index($req,$res,$args){
         // 使用配置来初始化一个公众号应用实例。
         $app = Factory::officialAccount($this->cfg);
