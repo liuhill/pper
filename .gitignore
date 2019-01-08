@@ -3,3 +3,4 @@
 !/logs/README.md
 /public/photo/*
 /.idea/
+/src/settings.php
