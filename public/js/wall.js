@@ -217,7 +217,7 @@ function render() {
      theta += 0.1;
      */
 //				camera.position.x += 1;
-//				camera.position.y += 5;
+				camera.position.y += 5;
 //				camera.position.z += 0.1;
     camera.lookAt( scene.position );
 
