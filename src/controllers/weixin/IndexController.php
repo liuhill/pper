@@ -53,12 +53,18 @@ class IndexController
 
             switch ( $type = $message['MsgType']) {
                 case 'event':
-                    return '收到事件消息';
+                    if($message['Event'] == "subscribe"){
+                        return '欢迎来到拍拍客，请直接发送图片，即可看到自己的照片墙!<br\>输入："我的"或者"mine"可以看到自己的照片墙地址';
+                    }
+                    elseif($message['Event'] == "unsubscribe"){
+                        return '欢迎再次光临，祝您生活愉快!';
+                    }
+
+                    return '收到事件消息'.$message['Event'];
                     break;
                 case 'text':
                     if ($message['Content'] == "mine" || $message['Content'] == "我的"){
-
-                        return $this->response($userCenter, "" ,"点击进入您的照片墙", "您的拍拍客地址");
+                        return $this->response($userCenter, "" ,"点击进入您的照片墙.或者在浏览器打开: $userCenter", "您的拍拍客地址");
                     }
 
                     return '收到文字消息:' . $message['Content'];

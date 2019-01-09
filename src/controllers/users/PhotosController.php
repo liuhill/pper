@@ -46,12 +46,10 @@ class PhotosController
         if(isset($args['id']) && !empty($args['id'])){
             $uid = intval($args['id']);
         }
-
+        $mMessage = new Message($this->db);
         if (empty($uid)) {
-            $mMessage = new Message($this->db);
             $resouce = $mMessage->getMessage();
         } else {
-            $mMessage = new Message($this->db);
             $resouce = $mMessage->getMessage($uid);
         }
         $data = [];
@@ -79,10 +77,14 @@ class PhotosController
     }
 
     public function wall($request, $response, $args){
+
         if(isset($args['id']) && !empty($args['id'])){
-            $openId = $args['id'];
+            $uid = $args['id'];
             $mUser = new User($this->db);
-            $uid = $mUser->getUid($openId);
+            $uid = $mUser->validUser($uid);
+            if($uid === false) {
+                $uid = '';
+            }
         }
         else {
             $uid = '';
@@ -95,5 +97,11 @@ class PhotosController
             ]);
         return $response;
 
+    }
+
+    public function subscribe($request, $response, $args){
+        $response = $this->view->render($response,
+            'subscribe.phtml');
+        return $response;
     }
 }

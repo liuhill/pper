@@ -23,13 +23,10 @@ class Message
 
     }
 
-    public function getMessage($uid = null){
+    public function getMessage($uid = 1){
 
         $order = " ORDER  BY create_time DESC limit " . Message::COUNT;
-        if(is_null($uid)){
-            $uid = 1;
-        }
-        $sql = "SELECT * FROM message WHERE uid=$uid" . $order;
+        $sql = "SELECT * FROM message WHERE uid=$uid " . $order;
         //$db->prepare($sql);
         //$db->bindParam(":uid",$uid);
         return $this->con->query($sql)->fetchAll();

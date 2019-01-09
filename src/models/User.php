@@ -18,6 +18,16 @@ class User
         $this->con = $db;
     }
 
+
+    public function validUser($id){
+        $sql = "SELECT * FROM `user` WHERE `id`=$id";
+        $row = $this->con->query($sql)->fetchAll();
+        if(count($row)>0){
+            return $id;
+        }
+        return false;
+    }
+
     public function getUid($user){
         $isMob='/^1[34578]{1}\d{9}$/';
         $isEmail = '/^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/';
