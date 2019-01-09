@@ -157,7 +157,7 @@ function init() {
 
     }, false );
 
-    transform( targets.table, 5000 );
+    transform( targets.helix, 5000 );
     //transform( targets.helix, 2000 );
     //
 

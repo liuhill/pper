@@ -105,8 +105,14 @@ class IndexController
         return $response->send();
     }
 
+
+    /**
+     * 测试代码使用
+     * @param $request
+     * @param $response
+     * @param $args
+     */
     public function ttt($request, $response, $args){
-//*
         $url = 'http://mmbiz.qpic.cn/mmbiz_jpg/EuJU30O3lFKuViaDuf1tJ1BLJ4xBgzYE2BsglxyIiaZYblhwFO6icK3iaqQI2wo3jvfKYmWXtz1S860jKicaBYf7mRg/0';
         $openId = 'os_G_jqeNPMfWLA-A2KIKodfm3SY';
 
