@@ -2,8 +2,9 @@
  * Created by liuligang on 2019/1/2.
  */
 
-//建议值[18,12]
+//建议值[16,9]
 var table = [];
+var maxCol = 16,maxRow=9;
 
 var camera, scene, renderer;
 var controls;
@@ -286,7 +287,6 @@ function getImgs (uid){
     //var table = [];
     var row = 1;
     var col = 1;
-    var maxCol = 18;
 
 
     $.ajax({
@@ -304,6 +304,9 @@ function getImgs (uid){
                 if(col > maxCol){
                     col = 1;
                     row ++;
+                }
+                if(row > maxRow){
+                    return;
                 }
             });
 //            console.log(data);

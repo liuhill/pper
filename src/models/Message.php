@@ -11,7 +11,7 @@ namespace Models;
 
 class Message
 {
-    const  COUNT = 216;
+    const  COUNT = 144;
     public $con;
 
     public function __construct($db)
@@ -27,11 +27,9 @@ class Message
 
         $order = " ORDER  BY create_time DESC limit " . Message::COUNT;
         if(is_null($uid)){
-            $sql = "SELECT * FROM message " . $order;
+            $uid = 1;
         }
-        else{
-            $sql = "SELECT * FROM message WHERE uid=$uid" . $order;
-        }
+        $sql = "SELECT * FROM message WHERE uid=$uid" . $order;
         //$db->prepare($sql);
         //$db->bindParam(":uid",$uid);
         return $this->con->query($sql)->fetchAll();
