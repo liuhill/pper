@@ -2,7 +2,7 @@
  * Created by liuligang on 2019/1/2.
  */
 
-//建议值[18,6]
+//建议值[18,12]
 var table = [];
 
 var camera, scene, renderer;
@@ -207,7 +207,7 @@ function animate() {
 
     TWEEN.update();
     controls.update();
-    render();
+    // render();
     //move( -1 );
 
 }
@@ -216,14 +216,34 @@ function render() {
     /*
      theta += 0.1;
      */
-//				camera.position.x += 1;
-				camera.position.y += 5;
-//				camera.position.z += 0.1;
-    camera.lookAt( scene.position );
 
+/*
+    if (!isMove) {
+              camera.position.x += Math.PI * 1;
+				camera.position.y += 5;
+				camera.position.z += 0.1;
+    }
+    camera.lookAt( scene.position );
+*/
     renderer.render( scene, camera );
 
 }
+
+/**
+ ** 控制自动旋转
+*/
+/*
+var isMove = false;
+
+document.onmousedown = function(e) {
+    isMove = true;
+};
+
+document.onmouseup = function() {
+    isMove = false;
+    animate();
+}
+*/
 
 // 说明：用 JavaScript 实现网页图片等比例缩放
 function resizeImg(image,distWidth,distHeight)
