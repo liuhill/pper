@@ -9,14 +9,9 @@ body {
     overflow: hidden;
 }
 
-a {
-    color: #ffffff;
-}
-
 #info {
     position: absolute;
     width: 100%;
-    color: #ffffff;
     padding: 5px;
     font-family: Monospace;
     font-size: 1em;
@@ -25,13 +20,30 @@ a {
     z-index: 1;
 }
 
+#info a {
+    color: #d4d2d2;
+}
+
 #info span {
     font-size: 1em;
     color: deepskyblue;
 }
 
-#info .title{
-/*    font-size: 1.5em; */
+#info ul li {
+    display:inline;
+}
+
+#info li {
+    border-right: 1px solid white;
+    margin-left: 0.4em;
+}
+
+#info li:first-child a {
+    color: white;
+}
+
+#info li:last-child {
+    border-right: 0px;
 }
 
 
