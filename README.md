@@ -1,10 +1,19 @@
-# pper2
-拍拍客2.0 ,基于slim3.0和easychat搭建
+# 拍拍客
+ 基于微信互动的照片墙，使用slim3.0框架和easychat控件搭建
+
+# 效果
+Demo: http://www.pper.com.cn
+![照片墙](https://github.com/liuhill/pper/blob/master/public/images/table.gif)
+![水晶球](https://github.com/liuhill/pper/blob/master/public/images/sphere.gif)
+![螺旋塔](https://github.com/liuhill/pper/blob/master/public/images/helix.gif)
+![展览厅](https://github.com/liuhill/pper/blob/master/public/images/grid.gif)
+
+
 
 # 安装
 - 1 下载代码
 ```
-git clone https://github.com/liuhill/pper2.git
+git clone https://github.com/liuhill/pper.git
 ```
 
 - 2 安装组件
