@@ -5,12 +5,19 @@
 Demo演示: http://www.pper.com.cn
 
 - 照片墙
+
 ![照片墙](https://github.com/liuhill/pper/blob/master/public/images/table.gif)
+
 - 水晶球
+
 ![水晶球](https://github.com/liuhill/pper/blob/master/public/images/sphere.gif)
+
 - 螺旋塔
+
 ![螺旋塔](https://github.com/liuhill/pper/blob/master/public/images/helix.gif)
+
 - 展览厅
+
 ![展览厅](https://github.com/liuhill/pper/blob/master/public/images/grid.gif)
 
 
