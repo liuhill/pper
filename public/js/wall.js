@@ -159,7 +159,7 @@ function init() {
     }, false );
 
     transform( targets.helix, 5000 );
-    //transform( targets.helix, 2000 );
+    //transform( targets.table, 2000 );
     //
 
     window.addEventListener( 'resize', onWindowResize, false );
