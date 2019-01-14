@@ -15,6 +15,7 @@ use EasyWeChat\Kernel\Messages\NewsItem;
 use \Common\Image\Photo;
 use \Models\User;
 use \Models\Message;
+use \Models\Qiniu;
 
 class IndexController
 {
@@ -71,12 +72,23 @@ class IndexController
                     break;
                 case 'image':
                     $url = $message['PicUrl'];
+
+
+
                     $imageName = $this->image($url, $uid);
                     if($imageName  === false){
                         return $this->response($url, $url ,$user, "图片操作失败");
                     }
 
-                    $orgImage = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName";
+                    if($qnUrl = $this->upQiniu($url,"pper_uid$uid"."_".$imageName)){  // 上传到七牛云
+                        $orgImage = $qnUrl;
+                        //删除本地图片
+                        unlink($this->resource['path'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName");   // 删除本地原图
+                    }
+                    else{
+                        $orgImage = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName";
+                    }
+
                     $resize = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/resize/$imageName";
                     $mMsg->saveMessage($uid,$type,$resize,$orgImage);
 
@@ -129,11 +141,39 @@ class IndexController
         $userCenter = "http://".$_SERVER['HTTP_HOST'] . "/users/$uid";
 //        return $this->response($url,$userCenter);
 
-        $this->image($url,$uid);
+        //$this->image($url,$uid);
 
-        echo $userCenter;
+        $imageName = $this->image($url, $uid);
+        if($imageName  === false){
+            return $this->response($url, $url ,$openId, "图片操作失败");
+        }
+
+        if($qnUrl = $this->upQiniu($url,"pper_uid$uid"."_".$imageName)){  // 上传到七牛云
+            unlink($this->resource['path'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName");   // 删除本地原图
+            $orgImage = $qnUrl;
+
+        }
+        else{
+            $orgImage = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName";
+        }
+
+
+        //echo $orgImage;
 //*/
     }
+
+
+
+    private function upQiniu($src,$name){
+        $cfg = $this->container->get("settings")['qiniu'];
+        if(!$cfg['enable']){
+            return false;
+        }
+        $qn = new Qiniu($cfg);
+        $url = $qn->upload($src,$name);
+        return $url;
+    }
+
 
     private function image($url,$uid){
         $dir = $this->container->get("settings")['resource'];

@@ -40,5 +40,13 @@ return [
             "user" => "",
             "pass" => ""
         ],
+        // 七牛云
+        'qiniu' => [
+            'enable' => false,
+            'access' => '',
+            'secret' => '',
+            'bucket' => ''
+        ],
+
     ],
 ];
