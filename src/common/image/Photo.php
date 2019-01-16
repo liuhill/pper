@@ -122,14 +122,14 @@ class Photo
 
             if($width > $distWidth)
             {
-                $percent = $distWidth/$width;
+                $percent = $distHeight/$height;
             }
         }
         else
         {
             if($height > $distHeight)
             {
-                $percent = $distHeight/$height;
+                $percent = $distWidth/$width;
             }
         }
         $new_width = $width * $percent;

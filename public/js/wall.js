@@ -35,11 +35,14 @@ function init() {
 
         var image=new Image();
         image.src=val.src;
-        a.appendChild(image)
+        //a.appendChild(image)
 
-        element.appendChild( a );
+        element.appendChild( image );
+//        element.setAttribute('style',"background-image: url(" + val.src + ")");
+        a.appendChild(element)
 
-        var object = new THREE.CSS3DObject( element );
+        //var object = new THREE.CSS3DObject( element );
+        var object = new THREE.CSS3DObject( a );
         object.position.x = Math.random() * 4000 - 2000;
         object.position.y = Math.random() * 4000 - 2000;
         object.position.z = Math.random() * 4000 - 2000;
@@ -158,8 +161,8 @@ function init() {
 
     }, false );
 
-    transform( targets.helix, 5000 );
-    //transform( targets.table, 2000 );
+    //transform( targets.helix, 5000 );
+    transform( targets.table, 2000 );
     //
 
     window.addEventListener( 'resize', onWindowResize, false );
