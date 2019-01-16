@@ -105,10 +105,10 @@ body {
 }
 
 .element {
-    width: 120px;
-    height: 160px;
+    width: 161px;
+    height: 100px;
     box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
-
+    text-align: center;
     border: 1px solid rgba(127,255,255,0.25);
     cursor: default;
 }
@@ -117,6 +117,24 @@ body {
     box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
     border: 1px solid rgba(127,255,255,0.75);
 }
+
+
+.element img {
+
+    margin: 10px;
+    object-fit: none; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+    width: 141px;
+    height: 80px;
+    opacity:0.7;
+    filter:alpha(opacity=70); /* 针对 IE8 以及更早的版本 */
+}
+
+.element img:hover {
+    opacity:1.0;
+    filter:alpha(opacity=100); /* 针对 IE8 以及更早的版本 */
+}
+
 
 .element .number {
     position: absolute;
@@ -146,20 +164,6 @@ body {
     color: rgba(127,255,255,0.75);
 }
 
-
-.element img {
-    object-fit: none; /* Do not scale the image */
-    object-position: center; /* Center the image within the element */
-    width: 120px;
-    height: 160px;
-    opacity:0.7;
-    filter:alpha(opacity=70); /* 针对 IE8 以及更早的版本 */
-}
-
-.element img:hover {
-    opacity:1.0;
-    filter:alpha(opacity=100); /* 针对 IE8 以及更早的版本 */
-}
 
 button {
     color: rgba(127,255,255,0.75);

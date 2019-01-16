@@ -52,8 +52,8 @@ function init() {
 
         //table
         var object = new THREE.Object3D();
-        object.position.x = (val.col * 140 ) - 1330;
-        object.position.y = - (val.row * 180 ) + 990;
+        object.position.x = (val.col * 181 ) - 1330;
+        object.position.y = - (val.row * 120 ) + 990;
         targets.table.push( object );
     });
 
@@ -86,7 +86,8 @@ function init() {
 
     for ( var i = 0, l = objects.length; i < l; i ++ ) {
 
-        var phi = i * 0.175 + Math.PI;
+        //var phi = i * 0.175 + Math.PI;
+        var phi = i * 0.205 + Math.PI;
 
         var object = new THREE.Object3D();
 
