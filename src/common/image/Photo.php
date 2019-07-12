@@ -13,7 +13,11 @@ use Common\Curl\Curlex;
 
 class Photo
 {
-
+    /**
+     * 获得文件家下面图片
+     * @param $dir
+     * @return array
+     */
     static public function list($dir){
         $files = [];
         if (is_dir($dir)) {
@@ -70,7 +74,12 @@ class Photo
         return $imageTypeArray[$size[2]];
     }
 
-
+    /**
+     * 图片下载
+     * @param $url
+     * @param $dir
+     * @return array|bool|string
+     */
     static public function download($url,$dir){
 
         if(!is_dir($dir)){
@@ -96,6 +105,7 @@ class Photo
 
 
     /**
+     * 图片缩放
      * @param $src : 源图片路径
      * @param $dest  : 目标图片路径
      * @param array $size   : 图片的 [宽度,高度]

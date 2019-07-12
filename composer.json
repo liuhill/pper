@@ -17,7 +17,8 @@
         "slim/php-view": "^2.0",
         "monolog/monolog": "^1.17",
         "overtrue/wechat": "~4.1",
-        "qiniu/php-sdk": "^7.2"
+        "qiniu/php-sdk": "^7.2",
+        "symfony/console": "^4.3"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0"
@@ -27,7 +28,8 @@
             "Tests\\": "tests/",
             "Controllers\\": "src/controllers/",
             "Common\\": "src/common/",
-            "Models\\": "src/models/"
+            "Models\\": "src/models/",
+            "Console\\": "src/console/"
         }
     },
     "config": {
