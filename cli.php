@@ -11,9 +11,13 @@ require __DIR__.'/vendor/autoload.php';
 use Console\Qn;
 use Symfony\Component\Console\Application;
 
-$qn = new Qn();
+
+$configure = require __DIR__ . '/src/settings.php'; // here are return ['settings'=>'']
+
+$qn = new Qn($configure['settings']);
 
 $application = new Application();
+
 $application->add($qn); // 添加命令行
 
 $application->run();

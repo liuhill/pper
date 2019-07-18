@@ -23,6 +23,12 @@ class Message
 
     }
 
+
+    public function getLocal(){
+        $sql = "SELECT * FROM message WHERE resource LIKE \"http://www.pper.com.cn%\"";
+        return $this->con->query($sql)->fetchAll();
+    }
+
     public function getMessage($uid = 1){
 
         $order = " ORDER  BY create_time DESC limit " . Message::COUNT;
@@ -30,6 +36,15 @@ class Message
         //$db->prepare($sql);
         //$db->bindParam(":uid",$uid);
         return $this->con->query($sql)->fetchAll();
+    }
+
+    public function updateUrl($url,$id) {
+        $sql = "UPDATE message SET resource=:resource WHERE id=:id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(":resource", $url);
+        $stmt->bindParam(":id", $id);
+        $res = $stmt->execute();
+        return $res;
     }
 
     public function saveMessage($uid,$type,$content,$resource){
