@@ -22,8 +22,10 @@ function init() {
 
     scene = new THREE.Scene();
 
+    var col = 1, row = 1;
 
     table.forEach(function(val,index){
+
         var element = document.createElement( 'div' );
         element.className = 'element';
         element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
@@ -35,11 +37,13 @@ function init() {
 
         var image=new Image();
         image.src=val.src;
+        image.onload = function() {
+        };
         //a.appendChild(image)
 
         element.appendChild( image );
 //        element.setAttribute('style',"background-image: url(" + val.src + ")");
-        a.appendChild(element)
+        a.appendChild(element);
 
         //var object = new THREE.CSS3DObject( element );
         var object = new THREE.CSS3DObject( a );
@@ -50,12 +54,25 @@ function init() {
 
         objects.push( object );
 
-        //table
-        var object = new THREE.Object3D();
-        object.position.x = (val.col * 181 ) - 1330;
-        object.position.y = - (val.row * 120 ) + 990;
-        targets.table.push( object );
     });
+
+
+
+
+    //table
+
+    for ( var i = 0, l = objects.length; i < l; i ++ ) {
+        var object = new THREE.Object3D();
+        object.position.x = (col++ * 181 ) - 1330;
+        object.position.y = - (row * 120 ) + 990;
+        if(col > maxCol){
+            col = 1;
+            row ++;
+        }
+        targets.table.push( object );
+    }
+
+
 
     // sphere
 
@@ -288,10 +305,6 @@ function resizeImg(image,distWidth,distHeight)
 
 //获得指定文件夹图片名称列表，同时设置图片的位置
 function getImgs (uid){
-    //var table = [];
-    var row = 1;
-    var col = 1;
-
 
     $.ajax({
         type: "GET",
@@ -300,24 +313,11 @@ function getImgs (uid){
         dataType: "json",
         success: function(data){
 
-            $.each(data,function(index,value)
-            {
-                //console.log(index,value);
-                data[index].col = col++;
-                data[index].row = row;
-                if(col > maxCol){
-                    col = 1;
-                    row ++;
-                }
-                if(row > maxRow){
-                    return;
-                }
-            });
+
 //            console.log(data);
             table = data;
             init();
             animate();
-
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
             console.error(XMLHttpRequest, textStatus, errorThrown);
