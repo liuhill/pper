@@ -48,9 +48,9 @@ class PhotosController
         }
         $mMessage = new Message($this->db);
         if (empty($uid)) {
-            $resouce = $mMessage->getMessage();
+            $resouce = $mMessage->getImages(1);
         } else {
-            $resouce = $mMessage->getMessage($uid);
+            $resouce = $mMessage->getImages($uid);
         }
         $data = [];
         foreach($resouce as $i=>$v){
@@ -91,7 +91,7 @@ class PhotosController
         }
 
         $response = $this->view->render($response,
-            'wall.phtml',
+            'wall2.phtml',
             [
                 'uid' => $uid
             ]);

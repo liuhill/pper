@@ -11,7 +11,7 @@ namespace Models;
 
 class Message
 {
-    const  COUNT = 144;
+    const  COUNT = 108;
     public $con;
 
     public function __construct($db)
@@ -29,12 +29,30 @@ class Message
         return $this->con->query($sql)->fetchAll();
     }
 
-    public function getMessage($uid = 1){
 
-        $order = " ORDER  BY create_time DESC limit " . Message::COUNT;
-        $sql = "SELECT * FROM message WHERE uid=$uid " . $order;
+    public function getImages($uid) {
+        $rows = $this->getMessage($uid);
+        if(count($rows) < Message::COUNT){
+            $fillRows = $this->getMessage(1,Message::COUNT - count($rows));
+            $rows = array_merge($rows,$fillRows);
+        }
+
+        return $rows;
+    }
+
+    public function getMessage($uid,$count = Message::COUNT){
+
+        $order = " ORDER  BY create_time DESC limit " . $count;
+        if(is_null($uid)) {
+            $sql = "SELECT * FROM message " . $order;
+        }
+        else {
+            $sql = "SELECT * FROM message WHERE uid=$uid " . $order;
+        }
+
         //$db->prepare($sql);
         //$db->bindParam(":uid",$uid);
+
         return $this->con->query($sql)->fetchAll();
     }
 

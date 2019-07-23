@@ -207,11 +207,11 @@ function transform( targets, duration ) {
             .start();
 
     }
-
     new TWEEN.Tween( this )
         .to( {}, duration * 2 )
         .onUpdate( render )
         .start();
+    //*/
 }
 
 function onWindowResize() {
