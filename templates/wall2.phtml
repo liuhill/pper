@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <title>拍拍客</title>
+    <link  rel="stylesheet" href="/css/lightbox.min.css" />
     <script src="/wall2/three.js"></script>
     <script src="/wall2/dat.gui.min.js"></script>
     <script src="/wall2/stats.min.js"></script>
@@ -198,6 +199,7 @@
 //        img.src = '../assets/screens/WALL-E-' + nrString + ".jpg";
         img.src = imgUrl = imgInfo.src;
         img.width = 140;
+        img.height = 140;
 
 
         a.href =  imgInfo.resource;
@@ -271,7 +273,6 @@
             } else {
                 // create a new one, and set it's position of screen
                 var imgData = table[i];
-                console.log(imgData);
                 var element = createCSS3DObject(imgData);
 
                 element.position = offscreen.clone();
@@ -450,7 +451,7 @@
             //data: "",
             dataType: "json",
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 table = data;
                 init();
             },
