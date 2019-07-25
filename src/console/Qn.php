@@ -56,18 +56,17 @@ class Qn extends Base
             $tbObj = new Message($this->db);
             $rows = $tbObj->getLocal();
             foreach($rows as $row) {
-
                 $name = basename($row['resource']);
                 $uid = $row['uid'];
                 $qn = new Qiniu($this->qiniu);
-                $url = $qn->upload($row['src'],"pper_uid$uid"."_".$name);
+                $url = $qn->upload($row['resource'],"pper_uid$uid"."_".$name);
                 if( $url !== false ) {
-                    $tbObj->updateUrl($url,$uid);
+                    $tbObj->updateUrl($url,$row['id']);
+                    $output->writeLn($row['id']."上传成功");
                 }
             }
 
             // Example code
-            $output->writeLn("上传成功");
         }
 
         else {

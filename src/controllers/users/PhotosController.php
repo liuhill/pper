@@ -55,6 +55,7 @@ class PhotosController
         $data = [];
         foreach($resouce as $i=>$v){
             $info = [];
+            $info['unique_id'] = $v['id'];
             $info['type'] = $type = $v['type'];
             switch($type){
                 case 'text':

@@ -14,16 +14,7 @@ var objects = [];
 var targets = { table: [], sphere: [], helix: [], grid: [] };
 
 
-
-function init() {
-
-    camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.z = 3000;
-
-    scene = new THREE.Scene();
-
-    var col = 1, row = 1;
-
+function initImg() {
     table.forEach(function(val,index){
 
         var element = document.createElement( 'div' );
@@ -38,6 +29,7 @@ function init() {
         var image=new Image();
         image.src=val.src;
         image.onload = function() {
+            //scene.add( object );
         };
         //a.appendChild(image)
 
@@ -55,7 +47,20 @@ function init() {
         objects.push( object );
 
     });
+}
 
+
+function init() {
+
+    camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.z = 3000;
+
+    scene = new THREE.Scene();
+
+    var col = 1, row = 1;
+
+
+    initImg();
 
 
 
