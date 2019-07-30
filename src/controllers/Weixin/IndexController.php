@@ -136,7 +136,15 @@ class IndexController
      * @param $args
      */
     public function ttt($request, $response, $args){
-        $url = 'http://mmbiz.qpic.cn/mmbiz_jpg/EuJU30O3lFKuViaDuf1tJ1BLJ4xBgzYE2BsglxyIiaZYblhwFO6icK3iaqQI2wo3jvfKYmWXtz1S860jKicaBYf7mRg/0';
+        set_error_handler(function ($errno, $errstr) {
+            // do something
+            echo "\r\n～～～～～找到错误 :-D～～～～～\r\n";
+            echo "错误信息:($errno)$errstr \r\n";
+            debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+            echo "\r\n";
+        }, E_WARNING);
+
+        $url = 'http://mmbiz.qpic.cn/mmbiz_jpg/EuJU30O3lFKeOmC254TagSVpKL1h4ibSA8lLQXeia4TrVo6F3s7mPQxBvJia9XNeMbmmWtVBkeib7ibicJU34mlMY6hw/0';
         $openId = 'os_G_jqeNPMfWLA-A2KIKodfm3SY';
 
         $mUser = new User($this->db);
@@ -162,7 +170,7 @@ class IndexController
             $orgImage = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName";
         }
 
-
+        restore_error_handler();
         //echo $orgImage;
 //*/
     }
