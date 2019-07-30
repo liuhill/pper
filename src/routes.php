@@ -10,9 +10,9 @@ $app->get('/users/[{id}]','\Controllers\Users\PhotosController:index');
 $app->get('/wall/[{id}]','\Controllers\Users\PhotosController:wall');
 $app->get('/subscribe','\Controllers\Users\PhotosController:subscribe');
 $app->get('/','\Controllers\Users\PhotosController:wall');
-$app->get('/weixin','\Controllers\weixin\IndexController:vaild');
-$app->get('/ttt','\Controllers\weixin\IndexController:ttt');
-$app->post('/weixin','\Controllers\weixin\IndexController:index');
+$app->get('/weixin','\Controllers\Weixin\IndexController:vaild');
+$app->get('/ttt','\Controllers\Weixin\IndexController:ttt');
+$app->post('/weixin','\Controllers\Weixin\IndexController:index');
 /*
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message
