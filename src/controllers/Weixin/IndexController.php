@@ -79,18 +79,23 @@ class IndexController
                     if($imageName  === false){
                         return $this->response($url, $url ,$user, "图片操作失败");
                     }
+                    $this->container->logger->info("转码成功，$imageName");
 
                     if($qnUrl = $this->upQiniu($url,"pper_uid$uid"."_".$imageName)){  // 上传到七牛云
                         $orgImage = $qnUrl;
+                        $this->container->logger->info("七牛云上传成功，$orgImage");
                         //删除本地图片
                         unlink($this->resource['path'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName");   // 删除本地原图
+                        $this->container->logger->info("删除本地成功，".$this->resource['path'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName");
                     }
                     else{
                         $orgImage = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/original/$imageName";
+                        $this->container->logger->info("上传失败，$orgImage");
                     }
 
                     $resize = $this->resource['url'] . DIRECTORY_SEPARATOR . "$uid/resize/$imageName";
-                    $mMsg->saveMessage($uid,$type,$resize,$orgImage);
+                    $msg = $mMsg->saveMessage($uid,$type,$resize,$orgImage);
+                    $this->container->logger->info("数据库更新失败，$msg");
 
                     return $this->response($userCenter, $resize,'图片已经上墙，点击或者刷新可以查看最新的照片墙','上墙通知');
 

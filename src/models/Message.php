@@ -68,10 +68,10 @@ class Message
     public function saveMessage($uid,$type,$content,$resource){
         $curData = date("Y-m-d H:i:s");
         $db = $this->con;
-        $sql = "INSERT INTO `message`(`uid`,`type`,`content`,`resource`,`create_time`) VALUES (:uid,:rsouceType,:content,:resource,:createtime)";
+        $sql = "INSERT INTO `message`(`uid`,`type`,`content`,`resource`,`create_time`) VALUES (:uid,:resouceType,:content,:resource,:createtime)";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(":uid", $uid);
-        $stmt->bindParam(":rsouceType", $type);
+        $stmt->bindParam(":resouceType", $type);
         $stmt->bindParam(":content", $content);
         $stmt->bindParam(":resource", $resource);
         $stmt->bindParam(":createtime", $curData);
