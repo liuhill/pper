@@ -15,6 +15,18 @@
     <script src="/wall2/tween.js"></script>
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/lightbox.js"></script>
+    <style type="text/css">
+        #gui_container{
+            position: absolute;
+            bottom: 0rem;
+            left: 0rem;
+            z-index:1;
+            opacity:0.65;
+        }
+        #gui{
+            /*transform:translate(-50%, -75px);*/
+        }
+    </style>
 </head>
 <script>
 
@@ -294,11 +306,14 @@
 
 
     function addControlGui(controlObject) {
-        var gui = new dat.GUI();
+        var gui = new dat.GUI({ autoPlace: false });
+        gui.domElement.id = 'gui';
         gui.add(controlObject, "toCube");
         gui.add(controlObject, "toSphere");
         gui.add(controlObject, "toCylinder");
         gui.add(controlObject, "toPlane");
+        var gui_container = document.getElementById("gui_container");
+        gui_container.appendChild(gui.domElement);
     }
 
     function addStatsObject() {
@@ -408,6 +423,7 @@
             </ul>
         </div>
     </div>
+    <div id="gui_container"></div>
 </body>
 
 </html>

@@ -70,6 +70,7 @@ body {
     font-size: 1em;
     color: white;
     position: fixed;
+    right:0rem;
     bottom: 1rem;
     margin: 1rem;
 }
