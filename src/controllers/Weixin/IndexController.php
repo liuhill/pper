@@ -73,7 +73,7 @@ class IndexController
                 case 'image':
                     $url = $message['PicUrl'];
 
-
+                    $this->container->logger->info("收到图片:$url");
 
                     $imageName = $this->image($url, $uid);
                     if($imageName  === false){
