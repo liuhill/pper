@@ -3,6 +3,7 @@
 /logs/*
 !/logs/README.md
 /public/photo/*
+/public/resource
 /.idea/
 /src/settings.php
 /db
