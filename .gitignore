@@ -5,3 +5,5 @@
 /public/photo/*
 /.idea/
 /src/settings.php
+/db
+!/db/pper.sql

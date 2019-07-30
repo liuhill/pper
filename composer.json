@@ -38,6 +38,11 @@
     "scripts": {
         "start": "php -S localhost:8080 -t public",
         "test": "phpunit"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
-
 }
