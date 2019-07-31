@@ -1,4 +1,4 @@
-# pper
+# Pper
  The 3D photo gallery  , Built using Slim 3, Three.js, Tween.js, easychat
 
 # Demo
@@ -66,6 +66,7 @@ Wechat
 
         ],
 ```
+
 mysql
 ```
         // Database connection settings
@@ -77,9 +78,25 @@ mysql
         ],
 ```
 
+qiniu cloud
+
+```
+        // 七牛云 https://www.qiniu.com/
+        'qiniu' => [
+            'enable' => false,
+            'access' => '',
+            'secret' => '',
+            'bucket' => ''
+        ],
+```
+
 
 - 7、 Start
 
 ```
 php -S 0.0.0.0:80 -t public
+```
+OR
+```
+composer start
 ```
