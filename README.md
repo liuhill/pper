@@ -4,6 +4,9 @@
 # Demo
 http://www.pper.com.cn
 
+- Wall
+
+
 - Cube
 
 ![Cube](https://github.com/liuhill/pper/blob/master/public/images/table.gif)
@@ -23,34 +26,34 @@ http://www.pper.com.cn
 
 
 # Installation
-- 1 Download source code
+- 1、 Download source code
 ```
 git clone https://github.com/liuhill/pper.git
 ```
 
-- 2 Install packages
+- 2、 Install packages
 ```
 composer install
 ```
 
-- 3 Generate autoload file
+- 3、 Generate autoload file
 ```
 composer dump-autoload -o
 ```
 
 
-- 4 Create database `pper`, and import mysql table
+- 4、 Create database `pper`, and import mysql table
 
 ```
 mysql -uroot -p pper < db/pper.sql
 ```
 
-- 5 Copy Default Configure`src/setting.default.php`为`src/setting.php`
+- 5、 Copy Default Configure`src/setting.default.php`为`src/setting.php`
 ```
 cp src/setting.default.php src/setting.php
 ```
 
-- 6 Configure `src/setting.php`
+- 6、 Configure `src/setting.php`
 
 Wechat
 ```
@@ -74,7 +77,7 @@ mysql
 ```
 
 
-- 7 Start
+- 7、 Start
 
 ```
 php -S 0.0.0.0:80 -t public
