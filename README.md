@@ -5,23 +5,23 @@
 http://www.pper.com.cn
 
 - Wall
-
+![Wall](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/wall.jpg)
 
 - Cube
 
-![Cube](https://github.com/liuhill/pper/blob/master/public/images/table.gif)
+![Cube](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/Cube.jpg)
 
-- Shpere
+- Sphere
 
-![Shpere](https://github.com/liuhill/pper/blob/master/public/images/sphere.gif)
+![Sphere](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/Sphere.jpg)
 
 - Cylinder
 
-![Cylinder](https://github.com/liuhill/pper/blob/master/public/images/helix.gif)
+![Cylinder](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/Cylinder.jpg)
 
 - Plane
 
-![Plane](https://github.com/liuhill/pper/blob/master/public/images/grid.gif)
+![Plane](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/Plane.jpg)
 
 
 
