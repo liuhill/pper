@@ -2,24 +2,24 @@
  The 3D photo gallery  , Built using Slim 3, Three.js, Tween.js, easychat
 
 # Demo
-![Wechat](https://raw.githubusercontent.com/liuhill/pper/master/public/images/qrcode_for_gh_15b711976a8a_258.jpg)
+![WeChat](https://raw.githubusercontent.com/liuhill/pper/master/public/images/qrcode_for_gh_15b711976a8a_258.jpg)
 
 http://www.pper.com.cn
 
 
-- Wall
+- Wall Show
 
 ![Wall](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/wall.jpg)
 
-- Cube
+- Cube Show
 
 ![Cube](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/Cube.jpg)
 
-- Sphere
+- Sphere Show
 
 ![Sphere](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/Sphere.jpg)
 
-- Cylinder
+- Cylinder Show
 
 ![Cylinder](https://raw.githubusercontent.com/liuhill/pper/master/screenshots/Cylinder.jpg)
 
